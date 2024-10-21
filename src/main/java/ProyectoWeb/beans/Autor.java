@@ -6,6 +6,8 @@ public class Autor {
 	private int idAutor;
 	private String nacionalidad;
 	private String nombre;
+	
+	
 	public int getIdAutor() {
 		return idAutor;
 	}
@@ -22,6 +24,12 @@ public class Autor {
 		this.nacionalidad = nacionalidad;
 	}
 	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public Autor(int idAutor, String nacionalidad, String nombre) {
+		super();
+		this.idAutor = idAutor;
+		this.nacionalidad = nacionalidad;
 		this.nombre = nombre;
 	}
 	
