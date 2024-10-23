@@ -6,7 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Iterator;
 
+import ProyectoWeb.beans.Autor;
 import ProyectoWeb.model.AutoresModel;
 
 /**
@@ -46,8 +48,23 @@ public class AutoresController extends HttpServlet {
     
     
     private void listar(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    	/*
     	request.setAttribute("listaAutores",modelo.listarAutores() );
-    	request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
+    	request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);*/
+    	try {
+    		request.setAttribute("listaAutores", modelo.listaAutores());
+    		Iterator<Autor> it=modelo.listaAutores().iterator();
+    		while(it.hasNext()) {
+    			
+    			Autor autor=it.next();
+    			System.out.println(autor.getIdAutor()+" "+autor.getNombre()+" "+autor.getNacionalidad());
+    		}
+    		
+    		request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
     	
     }
     

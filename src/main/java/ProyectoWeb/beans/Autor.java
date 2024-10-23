@@ -8,6 +8,11 @@ public class Autor {
 	private String nombre;
 	
 	
+	
+	
+	public Autor() {
+		super();
+	}
 	public int getIdAutor() {
 		return idAutor;
 	}
