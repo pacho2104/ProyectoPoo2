@@ -24,7 +24,7 @@ public class AutoresController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    public void processRequest(HttpServletRequest request,HttpServletResponse response) {
+    public void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
     	
     	if(request.getParameter("op")==null) {
     		listar(request, response);
@@ -45,9 +45,9 @@ public class AutoresController extends HttpServlet {
     }
     
     
-    private void listar(HttpServletRequest request,HttpServletResponse response) {
-    	request.setAttribute("listarAutores",modelo.listarAutores() );
-    	request.getRequestDispatcher("/autores/listaAutores.jsp");
+    private void listar(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    	request.setAttribute("listaAutores",modelo.listarAutores() );
+    	request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
     	
     }
     
@@ -57,7 +57,7 @@ public class AutoresController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		processRequest(request, response);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class AutoresController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+	  processRequest(request, response);
 	}
 
 }
