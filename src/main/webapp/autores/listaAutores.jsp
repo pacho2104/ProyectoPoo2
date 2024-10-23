@@ -10,6 +10,18 @@
 </head>
 <body>
 
+<%
+
+String url="http://localhost:8180/ProyectoWeb2/";
+
+
+%>
+
+<a type="button" href="<%=url%>AutoresController?op=nuevo">Nuevo Autor </a>
+
+
+
+
 <table border="1">
 		<thead>
 

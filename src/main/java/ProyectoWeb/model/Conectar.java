@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Conectar {
 	
-	private String url="jdbc:mysql://localhost/librospoo2";
+	private String url="jdbc:mysql://localhost/blibliotecaspoo2";
 	private String user="root";
 	private String pass="123456";
 	protected Connection con;
