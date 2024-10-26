@@ -51,32 +51,99 @@ public class AutoresModel extends Conectar {
 		}
 
 	}
-	
+
 	public int insertarAutor(Autor autor) {
-		
+
 		try {
-			
-			int filasAfectadas=0;
-			String sql="CALL sp_insertarAutor(?,?)";
+
+			int filasAfectadas = 0;
+			String sql = "CALL sp_insertarAutor(?,?)";
 			this.abrirConectar();
-			cst=con.prepareCall(sql);
-			//cst.setInt(1,autor.getIdAutor());
+			cst = con.prepareCall(sql);
+			// cst.setInt(1,autor.getIdAutor());
 			cst.setString(1, autor.getNombre());
 			cst.setString(2, autor.getNacionalidad());
-			filasAfectadas=cst.executeUpdate();
+			filasAfectadas = cst.executeUpdate();
 			return filasAfectadas;
-			
-			
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("error en:"+e.getMessage());
+			System.out.println("error en:" + e.getMessage());
 			this.cerrarConectar();
 			return 0;
 		}
-		
-		
+
 	}
-	
+
+	public int eliminarAutor(int id) {
+
+		try {
+
+			int filasAfectadas = 0;
+			String SQL = "CALL sp_eliminarAutor(?)";
+			this.abrirConectar();
+			cst = con.prepareCall(SQL);
+			cst.setInt(1, id);
+			filasAfectadas = cst.executeUpdate();
+			this.cerrarConectar();
+			return filasAfectadas;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("error en eliminar:" + e.getMessage());
+		}
+
+		return 0;
+	}
+
+	public Autor obtenerAutor(int idautor) throws SQLException {
+
+		Autor autor = new Autor();
+
+		try {
+
+			String sql = "CALL sp_obtenerAutor(?)";
+			this.abrirConectar();
+			cst = con.prepareCall(sql);
+			rs = cst.executeQuery();
+			if (rs.next()) {
+
+				autor.setIdAutor(rs.getInt("Codigo_autor"));
+				autor.setNombre(rs.getString("nombre_autor"));
+				autor.setNacionalidad(rs.getString("nacionalidad"));
+			}
+			this.cerrarConectar();
+			return autor;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("error en obtener 1:" + e.getMessage());
+			return null;
+		}
+
+	}
+
+	public int modificarAutor(Autor autor) {
+
+		try {
+
+			int filasAfectadas = 0;
+			String sql = "CALL sp_modificarAutor(?,?,?)";
+			this.abrirConectar();
+			cst = con.prepareCall(sql);
+			cst.setInt(1,autor.getIdAutor());
+			cst.setString(1, autor.getNombre());
+			cst.setString(2, autor.getNacionalidad());
+			filasAfectadas = cst.executeUpdate();
+			return filasAfectadas;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("error en:" + e.getMessage());
+			this.cerrarConectar();
+			return 0;
+		}
+
+	}
 
 }

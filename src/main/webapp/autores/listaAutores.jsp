@@ -12,7 +12,7 @@
 
 <%
 
-String url="http://localhost:8080/ProyectoWeb2/";
+String url="http://localhost:8090/ProyectoWeb2/";
 
 
 %>
@@ -45,7 +45,14 @@ String url="http://localhost:8080/ProyectoWeb2/";
 				<td><%=autor.getIdAutor()%></td>
 				<td><%=autor.getNombre()%></td>
 				<td><%=autor.getNacionalidad()%></td>
-				<td></td>
+				<td>
+				<!--<input type="button" value="ELIMINAR" name="eliminar">
+				<input type="button" value="MODIFICAR" name="modificar">  -->
+				<a href="<%=url%>AutoresController?op=eliminar&id=<%=autor.getIdAutor()%>">Eliminar</a>
+				<a href="<%=url%>AutoresController?op=obtener&id=<%=autor.getIdAutor()%>">Modificar</a>
+				
+				</td>
+
 			
 
 
