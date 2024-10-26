@@ -12,7 +12,7 @@
 
 <%
 
-String url="http://localhost:8180/ProyectoWeb2/";
+String url="http://localhost:8080/ProyectoWeb2/";
 
 
 %>

@@ -12,14 +12,14 @@ hola a todos
 
 <%
 
-String url="http://localhost:8180/ProyectoWeb2/";
+String url="http://localhost:8080/ProyectoWeb2/";
 
 
 %>
 
 
 <h3>Nuevo Autor</h3>
-<form role="form" action="<%=url%>AutoresController" method="POST">
+<form role="form" action="<%=url%>AutoresController?op=insertar" method="POST">
 
 <input type="hidden" name ="op" value="insertar"/>
 

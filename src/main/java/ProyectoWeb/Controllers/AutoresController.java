@@ -41,6 +41,9 @@ public class AutoresController extends HttpServlet {
     	case "nuevo":
     		request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
     		break;
+    	case "insertar":
+    		insetar(request, response);
+    		break;
     	
     	}
     	
@@ -65,6 +68,40 @@ public class AutoresController extends HttpServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+    	
+    	
+    }
+    
+    private void insetar(HttpServletRequest request,HttpServletResponse response){
+    	
+    	try {
+			
+    		Autor miAutor=new Autor();
+    		//miAutor.setIdAutor(Integer.parseInt(request.getParameter("codigo")));
+    		miAutor.setNombre(request.getParameter("nombre"));
+    		miAutor.setNacionalidad(request.getParameter("nacionalidad"));
+    		
+    		if(modelo.insertarAutor(miAutor)>0) {
+    			
+    			request.getSession().setAttribute("exito", "autor registrado exitosamente");
+    			response.sendRedirect(request.getContextPath()+"/AutoresController?op=lista");
+    			
+    		}else {
+    			
+    			request.getSession().setAttribute("fracaso", "autor no registrado ya que hay autor con ese codigo");
+    			response.sendRedirect(request.getContextPath()+"/AutoresController?op=listar");
+    			
+    			
+    		}
+    	
+    		
+    		
+		} catch (Exception e) {
+			// TODO: handle exception
+	          System.out.println("error en:"+e.getMessage());
+		}
+    	
+    	
     	
     }
     
