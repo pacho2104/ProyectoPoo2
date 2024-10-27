@@ -105,6 +105,7 @@ public class AutoresModel extends Conectar {
 			String sql = "CALL sp_obtenerAutor(?)";
 			this.abrirConectar();
 			cst = con.prepareCall(sql);
+			cst.setInt(1, idautor);
 			rs = cst.executeQuery();
 			if (rs.next()) {
 
@@ -132,8 +133,8 @@ public class AutoresModel extends Conectar {
 			this.abrirConectar();
 			cst = con.prepareCall(sql);
 			cst.setInt(1,autor.getIdAutor());
-			cst.setString(1, autor.getNombre());
-			cst.setString(2, autor.getNacionalidad());
+			cst.setString(2, autor.getNombre());
+			cst.setString(3, autor.getNacionalidad());
 			filasAfectadas = cst.executeUpdate();
 			return filasAfectadas;
 

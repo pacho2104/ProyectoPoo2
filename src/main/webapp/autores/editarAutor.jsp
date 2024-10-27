@@ -10,9 +10,11 @@
 </head>
 <body>
 
+EDITAR AUTOR
+
 <%
 
-String url="http://localhost:8090/ProyectoWeb2/";
+String url="http://localhost:8080/ProyectoWeb2/";
 
 Autor autor;
 
@@ -26,11 +28,12 @@ if(request.getAttribute("autor")==null){
 %>
 
 
-<h3>Nuevo Autor</h3>
-<form role="form" action="<%=url%>AutoresController?op=insertar" method="POST">
+<h3>Nuevo Autoresss</h3>
+<form role="form" action="<%=url%>AutoresController?op=modificar" method="POST">
+
 
 <input type="hidden" name ="op" value="modificar"/>
-
+Codigo:<input type="text" value="<%=autor.getIdAutor()%>" name="codigo" id="codigo" /><br>
 Nombre del Autor:<input type="text" value="<%=autor.getNombre() %>" name="nombre" id="nombre"/><br>
 Nacionalidad:<input type="text" value="<%=autor.getNacionalidad() %>" name="nacionalidad" id="nacionalidad"/><br>
 <input type="submit" value="Guardar" name="Guardar"/>
