@@ -70,14 +70,18 @@ public class AutoresController extends HttpServlet {
     	request.setAttribute("listaAutores",modelo.listarAutores() );
     	request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);*/
     	try {
+    		
+    		int total=modelo.totalAutores();
     		request.setAttribute("listaAutores", modelo.listaAutores());
     		Iterator<Autor> it=modelo.listaAutores().iterator();
     		while(it.hasNext()) {
     			
     			Autor autor=it.next();
     			System.out.println(autor.getIdAutor()+" "+autor.getNombre()+" "+autor.getNacionalidad());
+    			
     		}
     		
+    		System.out.println("total de autores:"+total);
     		request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
 			
 		} catch (Exception e) {
@@ -161,7 +165,7 @@ public class AutoresController extends HttpServlet {
 			// TODO: handle exception
 			System.out.println("error en obtener 2:"+e.getMessage());
 		}
-    }
+    } 
     
     private void modificar(HttpServletRequest request,HttpServletResponse response) {
     	

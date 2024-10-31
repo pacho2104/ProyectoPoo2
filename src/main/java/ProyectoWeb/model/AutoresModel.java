@@ -146,5 +146,30 @@ public class AutoresModel extends Conectar {
 		}
 
 	}
+	
+	public int totalAutores() {
+		try {
+			
+			int totalAutores=0;
+			String sql="select count(Codigo_autor) as totalAuto from autores";
+			this.abrirConectar();
+			cst=con.prepareCall(sql);
+			rs=cst.executeQuery();
+			while(rs.next()) {
+				
+				totalAutores=rs.getInt("totalAuto");
+			}
+			return totalAutores;
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("error en total autores:"+e.getMessage());
+			return 0;
+		}
+		
+		
+	
+	}
 
 }
