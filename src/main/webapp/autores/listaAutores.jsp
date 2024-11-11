@@ -38,9 +38,12 @@ function eliminar(id){
 </head>
 <body>
 
-	<%
-	String url = "http://localhost:8080/ProyectoWeb2/";
-	%>
+
+<%@ include file='/cabezeramain.jsp'%>
+
+
+
+
 
 	<div class="container">
 

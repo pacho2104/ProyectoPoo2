@@ -10,10 +10,10 @@
 </head>
 <body>
 
+<%@ include file='/cabezeramain.jsp'%>
 
-	<%
-	String url = "http://localhost:8080/ProyectoWeb2/";
-	%>
+
+	
 
 	<a type="button" href="<%=url%>EditorialController?op=nuevo">Nuevo
 		Editorial</a>

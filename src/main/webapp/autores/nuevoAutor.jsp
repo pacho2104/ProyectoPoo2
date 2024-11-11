@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +13,28 @@
 	
 </script>
 
+<script>
+
+
+function validarFormulario(){
+	
+	const nombre= document.getElementById("nombre").value.trim();
+	const nacionalidad=document.getElementById("nacionalidad").value.trim();
+	
+	if(nombre === ''){
+		
+		alert('Ingrese el nombre del autor');
+		document.getElementById("nombre").value.trim();
+		return false;
+		
+		
+	}
+	return true;
+	
+}
+
+</script>
+
 
 </head>
 <body>
@@ -19,14 +42,14 @@
 	hola a todos
 
 	<%
-String url = "http://localhost:8080/ProyectoWeb2/";
+String url = "http://localhost:8088/ProyectoWeb2/";
 %>
 
 	<div class="container">
 
 		<h3>Nuevo Autor</h3>
 		<form role="form" action="<%=url%>AutoresController?op=insertar"
-			method="POST">
+			method="POST" onsubmit="return validarFormulario()"  >
 			
 			<!-- <input type="hidden" name="op" value="insertar" /> Nombre del Autor:
 			<input type="text" name="nombre" id="nombre" /><br>
@@ -57,7 +80,29 @@ String url = "http://localhost:8080/ProyectoWeb2/";
 
 	</div>
 
+<%
 
+ if(request.getAttribute("respuesta")!=null){
+	 
+	 boolean res=(boolean)request.getAttribute("respuesta");
+	 
+	 
+	 if(res){
+		 List<String> listaError=(List<String>)request.getAttribute("listaError");
+		 for(String error:listaError){
+	
+%>
+
+<span><%=error%></span>
+<br>
+
+<%
+		 }
+	 }
+	 
+ }
+
+%>
 
 
 

@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import ProyectoWeb.beans.Autor;
 import ProyectoWeb.model.AutoresModel;
@@ -27,6 +29,8 @@ public class AutoresController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    
     
     public void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
     	
@@ -64,6 +68,38 @@ public class AutoresController extends HttpServlet {
     	
     }
     
+    private boolean validar(HttpServletRequest reques,HttpServletResponse response) throws ServletException, IOException {
+    	
+    	boolean res=false;
+    	List<String> listaError=new ArrayList<String>();
+    	
+    	try {
+    		
+    		if(reques.getParameter("nombre").equals("")) {
+    			res=true;
+    			listaError.add("Ingrese nombre del autor:");
+    		}
+    		
+    		if(reques.getParameter("nacionalidad").equals("")) {
+    			res=true;
+    			listaError.add("Ingrese nacionalidad del autor:");
+    		}
+    		
+    		
+    		reques.setAttribute("respuesta", res);
+    		reques.setAttribute("listaError", listaError);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getStackTrace();
+		}
+    	
+    	
+    	
+    	return res;
+    	
+    }
+    
     
     private void listar(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
     	/*
@@ -94,7 +130,10 @@ public class AutoresController extends HttpServlet {
     private void insetar(HttpServletRequest request,HttpServletResponse response){
     	
     	try {
-			
+    		
+    		if(!validar(request, response)) {
+    			
+    				
     		Autor miAutor=new Autor();
     		//miAutor.setIdAutor(Integer.parseInt(request.getParameter("codigo")));
     		miAutor.setNombre(request.getParameter("nombre"));
@@ -114,6 +153,15 @@ public class AutoresController extends HttpServlet {
     		}
     	
     		
+    			
+    			
+    		}else {
+    			request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
+    		}
+    		
+    		
+    		
+		
     		
 		} catch (Exception e) {
 			// TODO: handle exception

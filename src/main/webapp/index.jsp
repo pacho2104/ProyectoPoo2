@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-haloooooooooooooooooooooo
+
+
+<div class="container"  >
+
+<%@ include file='/cabezeramain.jsp'%>
+
+
+</div>
+
 </body>
 </html>
